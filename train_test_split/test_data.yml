@@ -1,0 +1,94 @@
+version: "3.1"
+nlu:
+- intent: call_jason_agent
+  examples: |
+    - Diga Oi ao agente Jason
+- intent: verify_suitability
+  examples: |
+    - o leito [103d](bed) é adequado para o paciente [Mariano Ferreira](patient)?
+- intent: refuse_bed_suggestion
+  examples: |
+    - Cancelar reservas
+- intent: agree_bed_suggestion
+  examples: |
+    - Está bem, pode alocar
+- intent: get_optimized_allocation_moving
+  examples: |
+    - sugira uma alocação movendo até [5](numPatients) paciente
+- intent: get_suggestion_bed
+  examples: |
+    - E no leito [203j](bed) que paciente você acha de deve ser colocado?
+- intent: get_suggestion_with_bed_exception
+  examples: |
+    - exceto o [209f](bed) em qual leito vc acha que devemos colocar o [Marcos Pasqual](patient)?
+- intent: verify_nurse_exception
+  examples: |
+    - A enfermeira fez uma excessão para o paciente [Marcos Souza](patient) pode verificar?
+- intent: why_not_bed
+  examples: |
+    - Por que não?
+    - por quê?
+- intent: default_thanks
+  examples: |
+    - Ok, Obrigado!
+- intent: validation_result_confirm_valid
+  examples: |
+    - sim, mas só os que não tem falhas
+    - sim, mas deixe os que tem falhas de fora
+- intent: nurse_exception_get_suggestion
+  examples: |
+    - veja qual leito é adequado agora
+- intent: get_exception_suggestion
+  examples: |
+    - tem alguma sugestão para os demais?
+    - Tem algum leito pra sugerir pros pacientes que sobraram?
+- intent: agree
+  examples: |
+    - concordo
+    - faça isso
+- intent: another_bed_suggestion
+  examples: |
+    - Você pode me sugerir outro leito além desse?
+    - tem algum outro que é adequado?
+- intent: default_welcome
+  examples: |
+    - fala
+    - oi tudo bem
+- intent: validation_result_confirm_anyway
+  examples: |
+    - Conclua mesmo assim
+    - pode alocar
+- intent: refuse
+  examples: |
+    - não mesmo
+    - acho que não
+    - definitivamente não
+- intent: allocate_pacient
+  examples: |
+    - Aloque o paciente [Carlos Soares](patient) no leito [345j](bed)
+    - alocar [joao machado](patient) em [101a](bed)
+    - Aloque a [Ana Silva](patient) no leito [102b](bed)
+- intent: get_validation_result
+  examples: |
+    - confirme reserva
+    - Valide minha alocação
+    - valide
+- intent: confirm_optimized_allocation_exception
+  examples: |
+    - sim, mas não aloque o [Carlos Santos](patient)
+    - confirme, mas deixe de fora a [Camila Mendez](patient)
+    - Pode confirmar mas deixe de fora a [Janaina de Vargas](patient)
+- intent: get_optimized_allocation
+  examples: |
+    - que alocação você me sugere?
+    - Crie uma alocação otimizada usando os dados atuais
+    - Você pode me sugerir uma alocação
+    - o que você pode me sugerir?
+- intent: get_suggestion
+  examples: |
+    - Alocar [Daniel](patient)
+    - qual leito você sugere para a [Paula Andrade](patient)?
+    - qual leito você sugere para a paciente [Maria da Silva](patient)?
+    - Sugira um leito para o paciente [Felipe Pinto](patient)
+    - sugira uma alocacao para a paciente [Maria da Silva](patient)
+    - sugira um leito para a paciente [Maria da Silva](patient)

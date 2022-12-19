@@ -1,0 +1,539 @@
+[
+  {
+    "text": "Posso colocar a Maria da Silva no leito 203b?",
+    "entities": [
+      {
+        "start": 16,
+        "end": 30,
+        "value": "Maria da Silva",
+        "entity": "patient"
+      },
+      {
+        "start": 34,
+        "end": 44,
+        "value": "leito 203b",
+        "entity": "bed"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient",
+        "start": 16,
+        "end": 30,
+        "confidence_entity": 0.874965250492096,
+        "value": "Maria da Silva",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "bed",
+        "start": 40,
+        "end": 44,
+        "confidence_entity": 0.9980388283729553,
+        "value": "203b",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "exceto o 209f em qual leito vc acha que devemos colocar o Marcos Pasqual?",
+    "entities": [
+      {
+        "start": 9,
+        "end": 13,
+        "value": "209f",
+        "entity": "bed"
+      },
+      {
+        "start": 58,
+        "end": 72,
+        "value": "Marcos Pasqual",
+        "entity": "patient"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "bed",
+        "start": 9,
+        "end": 13,
+        "confidence_entity": 0.578299880027771,
+        "value": "209f",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "patient",
+        "start": 58,
+        "end": 64,
+        "confidence_entity": 0.9938492178916931,
+        "value": "Marcos",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Aloque a paciente Ana Silva no leito 101a",
+    "entities": [
+      {
+        "start": 18,
+        "end": 27,
+        "value": "Ana Silva",
+        "entity": "patient"
+      },
+      {
+        "start": 31,
+        "end": 41,
+        "value": "leito 101a",
+        "entity": "bed"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient",
+        "start": 18,
+        "end": 27,
+        "confidence_entity": 0.9722015261650085,
+        "value": "Ana Silva",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "bed",
+        "start": 37,
+        "end": 41,
+        "confidence_entity": 0.9994245767593384,
+        "value": "101a",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "aloque o paciente Felipe Pinto no leito 106a",
+    "entities": [
+      {
+        "start": 18,
+        "end": 30,
+        "value": "Felipe Pinto",
+        "entity": "patient"
+      },
+      {
+        "start": 34,
+        "end": 44,
+        "value": "leito 106a",
+        "entity": "bed"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient",
+        "start": 18,
+        "end": 30,
+        "confidence_entity": 0.9888060092926025,
+        "value": "Felipe Pinto",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "bed",
+        "start": 40,
+        "end": 44,
+        "confidence_entity": 0.9980905652046204,
+        "value": "106a",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Pode confirmar mas deixe de fora a Janaina de Vargas",
+    "entities": [
+      {
+        "start": 35,
+        "end": 52,
+        "value": "Janaina de Vargas",
+        "entity": "patient"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient",
+        "start": 35,
+        "end": 42,
+        "confidence_entity": 0.999204695224762,
+        "value": "Janaina",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "patient",
+        "start": 46,
+        "end": 52,
+        "confidence_entity": 0.994659960269928,
+        "value": "Vargas",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Aloque o paciente Julio de Castilhos",
+    "entities": [
+      {
+        "start": 18,
+        "end": 36,
+        "value": "Julio de Castilhos",
+        "entity": "patient"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient",
+        "start": 18,
+        "end": 23,
+        "confidence_entity": 0.9854416847229004,
+        "value": "Julio",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "patient",
+        "start": 27,
+        "end": 36,
+        "confidence_entity": 0.998129665851593,
+        "value": "Castilhos",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "fora o 202k tem mais algum leito adequado pra Ana de Mello?",
+    "entities": [
+      {
+        "start": 7,
+        "end": 11,
+        "value": "202k",
+        "entity": "bed"
+      },
+      {
+        "start": 46,
+        "end": 58,
+        "value": "Ana de Mello",
+        "entity": "patient"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "bed",
+        "start": 7,
+        "end": 11,
+        "confidence_entity": 0.7135601043701172,
+        "value": "202k",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "patient",
+        "start": 46,
+        "end": 49,
+        "confidence_entity": 0.9948174357414246,
+        "value": "Ana",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "patient",
+        "start": 53,
+        "end": 58,
+        "confidence_entity": 0.5834217071533203,
+        "value": "Mello",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Existe alguma excessão cadastrada para a paciente Janaina de Vargas?",
+    "entities": [
+      {
+        "start": 50,
+        "end": 67,
+        "value": "Janaina de Vargas",
+        "entity": "patient"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient",
+        "start": 50,
+        "end": 57,
+        "confidence_entity": 0.9992457628250122,
+        "value": "Janaina",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "patient",
+        "start": 61,
+        "end": 67,
+        "confidence_entity": 0.9927487969398499,
+        "value": "Vargas",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "algum dos outros leitos livres é?",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient",
+        "start": 6,
+        "end": 9,
+        "confidence_entity": 0.7603352069854736,
+        "value": "dos",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "movendo no máximo um paciente de lugar, que alocação você me sugere?",
+    "entities": [
+      {
+        "start": 18,
+        "end": 20,
+        "value": "um",
+        "entity": "numPatients"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Confirme a alocação do paciente Antonio dos Santos no leito 215d",
+    "entities": [
+      {
+        "start": 32,
+        "end": 50,
+        "value": "Antonio dos Santos",
+        "entity": "patient"
+      },
+      {
+        "start": 60,
+        "end": 64,
+        "value": "215d",
+        "entity": "bed"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient",
+        "start": 32,
+        "end": 39,
+        "confidence_entity": 0.9921294450759888,
+        "value": "Antonio",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "patient",
+        "start": 44,
+        "end": 50,
+        "confidence_entity": 0.9360160827636719,
+        "value": "Santos",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "bed",
+        "start": 60,
+        "end": 64,
+        "confidence_entity": 0.9641387462615967,
+        "value": "215d",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "aloque o paciente Daniel Souza no leito 402a",
+    "entities": [
+      {
+        "start": 18,
+        "end": 30,
+        "value": "Daniel Souza",
+        "entity": "patient"
+      },
+      {
+        "start": 34,
+        "end": 44,
+        "value": "leito 402a",
+        "entity": "bed"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient",
+        "start": 18,
+        "end": 30,
+        "confidence_entity": 0.6201878786087036,
+        "value": "Daniel Souza",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "bed",
+        "start": 40,
+        "end": 44,
+        "confidence_entity": 0.9824337959289551,
+        "value": "402a",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "ok, confirme todos menos a Marcela Kirch",
+    "entities": [
+      {
+        "start": 27,
+        "end": 40,
+        "value": "Marcela Kirch",
+        "entity": "patient"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "bed",
+        "start": 35,
+        "end": 40,
+        "confidence_entity": 0.7571866512298584,
+        "value": "Kirch",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "O que você achou da minha alocação?",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient",
+        "start": 17,
+        "end": 19,
+        "confidence_entity": 0.9848862290382385,
+        "value": "da",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "aloque o João Dias no leito 345h",
+    "entities": [
+      {
+        "start": 9,
+        "end": 18,
+        "value": "João Dias",
+        "entity": "patient"
+      },
+      {
+        "start": 28,
+        "end": 32,
+        "value": "345h",
+        "entity": "bed"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient",
+        "start": 9,
+        "end": 13,
+        "confidence_entity": 0.989183783531189,
+        "value": "João",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "bed",
+        "start": 28,
+        "end": 32,
+        "confidence_entity": 0.9984863996505737,
+        "value": "345h",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Você pode me sugerir outro leito além do 202b?",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "bed",
+        "start": 41,
+        "end": 45,
+        "confidence_entity": 0.999471127986908,
+        "value": "202b",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "confirme todas menos o Lucas de Castro",
+    "entities": [
+      {
+        "start": 23,
+        "end": 38,
+        "value": "Lucas de Castro",
+        "entity": "patient"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient",
+        "start": 23,
+        "end": 28,
+        "confidence_entity": 0.5110667943954468,
+        "value": "Lucas",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "patient",
+        "start": 32,
+        "end": 38,
+        "confidence_entity": 0.8063178658485413,
+        "value": "Castro",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "em que leito você acha que devemos colocar a paciente Ana Maldonado?",
+    "entities": [
+      {
+        "start": 54,
+        "end": 67,
+        "value": "Ana Maldonado",
+        "entity": "patient"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient",
+        "start": 54,
+        "end": 57,
+        "confidence_entity": 0.9910324215888977,
+        "value": "Ana",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "faça uma sugestão para a Janaina de Vargas",
+    "entities": [
+      {
+        "start": 25,
+        "end": 42,
+        "value": "Janaina de Vargas",
+        "entity": "patient"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient",
+        "start": 25,
+        "end": 32,
+        "confidence_entity": 0.9981775283813477,
+        "value": "Janaina",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "patient",
+        "start": 36,
+        "end": 42,
+        "confidence_entity": 0.992865800857544,
+        "value": "Vargas",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  }
+]

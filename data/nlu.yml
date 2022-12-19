@@ -1,0 +1,302 @@
+version: "3.1"
+
+nlu:
+
+- intent: allocate_pacient
+  examples: |
+    - aloque o [João Dias](patient) no leito [345h](bed)
+    - coloque a [Manoela Freitas](patient) no leito [678y](bed)
+    - aloque o leito [345o](bed) para a [Maria das Graças](patient)
+    - Confirme a alocação do paciente [Antonio dos Santos](patient) no leito [215d](bed)
+    - Aloque o paciente [Carlos Soares](patient) no leito [345j](bed)
+    - Aloque o paciente [Marcos Silva](patient) no leito [101b](bed)
+    - Aloque a [Ana Silva](patient) no leito [102b](bed)
+    - alocar [joao machado](patient) em [101a](bed)
+    - eu quero colocar o [joao](patient) no quarto [101a](bed)
+    - aloque a paciente [Maria da Silva](patient) no leito [101b](bed)
+    - Aloque a paciente [Ana Silva](patient) no [leito 101a](bed)
+    - aloque o paciente [Felipe Pinto](patient) no [leito 106a](bed)
+    - Posso colocar a [Maria da Silva](patient) no [leito 203b](bed)?
+    - aloque o paciente [Daniel Souza](patient) no [leito 402a](bed)
+
+- intent: agree
+  examples: |
+    - pode
+    - Tudo bem
+    - Pode ser
+    - ok
+    - faça isso
+    - confirmar
+    - sim
+    - isso mesmo
+    - concordo
+    - parece bom
+
+- intent: refuse
+  examples: |
+    - discordo
+    - definitivamente não
+    - não obrigado
+    - acho que não
+    - não
+    - não tenho interesse
+    - não quero isso
+    - não faça isso
+    - não mesmo
+    - agora não
+    - Não aloque
+    - não, cancele
+    - Não, cancele
+
+- intent: agree_bed_suggestion
+  examples: |
+    - Está bem, pode alocar
+    - Ok, pode alocar conforme sua sugestão
+    - Ok, aloque os pacientes conforme você sugeriu
+    - Pode confirmar
+    - Sim, pode alocar
+
+- intent: refuse_bed_suggestion
+  examples: |
+    - Agora não
+    - Não confirme
+    - não, quero que aloque direto
+    - Cancelar reservas
+
+- intent: another_bed_suggestion
+  examples: |
+    - qual outro leito você me sugere?
+    - Você pode me sugerir outro leito além desse?
+    - tem algum outro que é adequado?
+    - algum outro leito é adequado?
+    - Então sugira um que seja adequado
+    - Você pode me sugerir outro leito além do 202b?
+    - tem algum que seja?
+    - algum dos outros leitos livres é?
+    - então o que você me sugere?
+    - qual leito você sugere para ela?
+
+- intent: why_not_bed
+  examples: |
+    - Por que não?
+    - por que?
+    - pq?
+    - pq não?
+    - ué, por que?
+    - Porque não?
+    - ué, por que não?
+    - por quê?
+
+- intent: call_jason_agent
+  examples: |
+    - Diga olá ao agente Jason
+    - Diga Oi ao agente Jason
+
+- intent: get_optimized_allocation
+  examples: |
+    - Faça uma sugestão otimizada de alocação
+    - otimize
+    - Você pode sugerir uma alocação otimizada?
+    - Você pode me sugerir uma alocação
+    - Otimize uma alocação e me sugira
+    - Sugira uma alocação pra mim
+    - Faça uma sugestão de alocação
+    - Crie uma alocação otimizada
+    - Crie uma alocação otimizada usando os dados atuais
+    - que alocação você me sugere?
+    - otimize ela pra mim
+    - otimize a alocação então
+    - tem alguma sugestão?
+    - Como devo alocar então?
+    - que alocação você sugere?
+    - o que você me sugere?
+    - sugira
+    - o que você pode me sugerir?
+
+- intent: confirm_optimized_allocation_exception
+  examples: |
+    - Certo, pode alocar os pacientes conforme sua sugestão, exceto o paciente [Marcos Souza](patient) e a paciente [Ana Silva](patient)
+    - Certo, pode alocar os pacientes conforme sua sugestão, exceto o paciente [Lucas Maria Figueira](patient).
+    - ok, mas não aloque o paciente [Maria das Graças](patient).
+    - Aloque todos, exceto o [Joao Carlos](patient)
+    - Não aloque o [Fabio Ribeiro](patient), os outros, pode alocar.
+    - Deixe o [Antonio da Silva Magalhães](patient) para trás, os demais pode alocar
+    - Aloque todos menos a [Ana Maria](patient) e a [Joana da Silva](patient)
+    - Certo, pode alocar os pacientes conforme sua sugestão, exceto o paciente [Marcos Souza](patient)
+    - Pode confirmar mas deixe de fora a [Janaina de Vargas](patient)
+    - Pode alocar, mas deixe a [Ana Silva](patient) para trás
+    - confirme, mas deixe de fora a [Camila Mendez](patient)
+    - sim, mas não aloque o [Carlos Santos](patient)
+    - ok, confirme todos menos a [Marcela Kirch](patient)
+    - confirme todas menos o [Lucas de Castro](patient)
+    - Tá, aloque todos exceto a [Maria Lucas](patient)
+    - Ok, Deixe o [João da Silva](patient) de fora e aloque os demais
+    - Aloque todos menos a [Ana Maria](patient) e a [Joana da Silva](patient)
+    - Ok pode alocar, mas não aloque o [Marcos Souza](patient) nem a [Ana Silva](patient)
+
+- intent: get_optimized_allocation_moving
+  examples: |
+    - movendo no máximo [um](numPatients) paciente de lugar, que alocação você me sugere?
+    - o que você me sugere se puder mover até [4](numPatients) pacientes?
+    - sugira uma alocação movendo até [5](numPatients) paciente
+    - faça uma alocação otimizada movendo até [2](numPatients) pacientes
+    - Movendo até [3](numPatients) pacientes que já estão alocados é possível alocar esse que faltou?
+    - movendo no máximo [um](numPatients) paciente de lugar, que alocação você me sugere?
+
+- intent: get_suggestion
+  examples: |
+    - Aloque o paciente [Julio de Castilhos](patient)
+    - Eu quero alocar o paciente [Antonio Marquezan](patient)
+    - Faça uma sugestão de alocação para o paciente [Joel Santoro](patient)
+    - em que leito você acha que devemos colocar a paciente [Ana Maldonado](patient)?
+    - Faça uma alocação otimizada para os pacientes [João Machado](patient) e [Ana da Silva](patient)
+    - Que leito você pode me sugerir para a paciente [Maria Castilhos](patient)?
+    - Em qual leito você sugere alocar o [Marcos Souza](patient)?
+    - me sugira um leito para o paciente [Marcos Souza](patient)
+    - qual leito você sugere para a [Paula Andrade](patient)?
+    - alocar o [joao machado](patient)
+    - olá, onde posso alocar o [João Machado](patient)
+    - o que você me sugere para o paciente [Vicente Nunes](patient)?
+    - o que você me sugere para a paciente [Janete da Silva](patient)?
+    - sugira um leito para o paciente [Felipe Pinto](patient)
+    - qual leito você sugere para a paciente [Maria da Silva](patient)?
+    - sugira um leito para a [Marisa da Costa](patient)
+    - QUAL LEITO VOCÊ SUGERE PARA A [Marisa da Costa](patient)
+    - Alocar [Daniel](patient)
+    - faça uma sugestão para a [Janaina de Vargas](patient)
+    - qual leito você sugere para a [Maria da Silva](patient)?
+    - qual leito vc sugere para a [Marisa da Costa](patient)?
+    - Sugira um leito para o paciente [Daniel Souza](patient)
+    - Qual leito você sugere para a [Maria da Silva](patient)?
+    - qual leito vc sugere para o [Antônio Marques](patient)?
+    - sugira um leito para a paciente [Maria da Silva](patient)
+    - Sugira um leito para o paciente [Antônio Marques](patient)
+    - Sugira um leito para o paciente [Felipe Pinto](patient)
+    - sugira uma alocacao para a paciente [Maria da Silva](patient)
+    - onde posso alocar o paciente [vitor almeida](patient)?
+    - em que quarto devo colocar o [Daniel Souza](patient)?
+    - Onde posso alocar a [Janaina de Vargas](patient)?
+
+- intent: default_thanks
+  examples: |
+    - tá bem obrigada
+    - Tá bem, Obrigado
+    - Ok, Obrigado!
+    - Obrigada
+    - Vlw
+    - Valeu
+    - Obrigado
+    - OK, Obrigada!
+
+- intent: default_welcome
+  examples: |
+    - há quanto tempo
+    - olá
+    - oi
+    - opa
+    - fala aí
+    - fala
+    - saudações
+    - oi tudo bem
+    - e aí
+    - eae
+
+- intent: get_suggestion_bed
+  examples: |
+    - alocar quem no [204l](bed)?
+    - E no leito [203j](bed) que paciente você acha de deve ser colocado?
+    - qual paciente você colocaria no leito [209h](bed)?
+    - qual paciente pode ser alocado no [102b](bed)
+    - Qual paciente você acha que devo colocar no leito [101a](bed)
+
+- intent: get_suggestion_with_bed_exception
+  examples: |
+    - tem algum leito adequado para a [Maria Assis](patient) que não seja o [309h](bed)?
+    - fora o [202k](bed) tem mais algum leito adequado pra [Ana de Mello](patient)?
+    - exceto o [209f](bed) em qual leito vc acha que devemos colocar o [Marcos Pasqual](patient)?
+    - qual leito você sugere pro paciente [Cristiano da Silva](patient), desde que não seja o [304l](bed)
+    - faça uma sugestão de alocação para a [Ana Mendes](patient), fora o [101a](bed)
+    - Me sugira um leito para o paciente [Antonio Camargo](patient), exceto o [202a](bed)
+    - Qual leito você me sugere para o paciente [Marcos Souza](patient), exceto o [102b](bed)?
+
+- intent: get_validation_result
+  examples: |
+    - validar
+    - valide
+    - Tem algo a melhorar na alocação?
+    - A alocação está boa?
+    - Minha alocação tem erros?
+    - O que você achou da minha alocação?
+    - Valide a minha alocação
+    - A alocação que fiz é válida?
+    - valide a minha alocação
+    - Valide minha alocação
+    - confirme alocação
+    - confirme reserva
+    - Valide a minha alocação
+    - Valide
+    - Validar alocação
+    - Validar
+
+- intent: validation_result_confirm_valid
+  examples: |
+    - não os que tem falhas, os outros sim
+    - deixe os que tem falhas de fora e confirme os demais
+    - sim, mas deixe os que tem falhas de fora
+    - sim, mas só os que não tem falhas
+    - sim, mas só os válidos
+    - Confirme só os pacientes válidos
+    - Confirme apenas os que não tem falhas
+    - Ok aloque os que estão válidos apenas
+
+- intent: validation_result_confirm_anyway
+  examples: |
+    - Conclua mesmo assim
+    - Pode confirmar mesmo assim
+    - Confirme mesmo assim
+    - Confirme a alocação
+    - Confirme
+    - alocar mesmo assim
+    - alocar assim mesmo
+    - pode alocar
+    - Quero que você conclua a alocação mesmo assim
+    - confirmo alocação
+
+- intent: verify_nurse_exception
+  examples: |
+    - o paciente [Alessandro Jones](patient) tem alguma excessão cadastrada?
+    - tem alguma excessão pro [Antonio Marques](patient)?
+    - veja se tem alguma excessão pra [Maria Mendez](patient)
+    - Pode ver se a enfermeira fez uma excessão para o paciente [Marcos Souza](patient)?
+    - A enfermeira fez uma excessão para o paciente [Marcos Souza](patient) pode verificar?
+    - Existe alguma excessão cadastrada para a paciente [Janaina de Vargas](patient)?
+    - Veja se a enfermeira fez alguma excessão para o paciente [Marcos Souza](patient)
+
+- intent: nurse_exception_get_suggestion
+  examples: |
+    - veja qual leito é adequado agora
+    - em que leito você sugere colocar ele agora?
+    - tem algum leito adequado agora?
+    - que leito você pode sugerir agora?
+    - Faça uma alocação otimizada pra esse paciente considerando essa excessão
+    - com essa excessão, qual leito você sugere?
+    - qual leito você sugere para esse paciente?
+    - então qual leito você me sugere agora para esse paciente?
+
+- intent: verify_suitability
+  examples: |
+    - veja se o leito [101a](bed) é adequado para o paciente [Marcos Souza](patient)
+    - o leito [103d](bed) é adequado para o paciente [Mariano Ferreira](patient)?
+    - Agora veja se o leito [101c](bed) é adequado para o paciente [Lucas Maria Figueira](patient)
+
+- intent: get_exception_suggestion
+  examples: |
+    - E pra esses que eu pedi pra não alocar o que você me sugere?
+    - Tem alguma sugestão pra esses que pedi pra não alocar?
+    - tá e para os outros, tem alguma sugestão?
+    - E pra essa paciente? que leitos você sugere?
+    - E pra esses pacientes, que leitos vc sugere?
+    - Tem algum leito pra sugerir pros pacientes que sobraram?
+    - Quais leitos você me sugere para esses pacientes?
+    - Qual leito você me sugere para essa paciente?
+    - tem alguma sugestão para os demais?

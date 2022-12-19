@@ -1,0 +1,313 @@
+version: "3.1"
+
+intents:
+  - allocate_pacient
+  - agree
+  - refuse
+  - agree_bed_suggestion
+  - refuse_bed_suggestion
+  - another_bed_suggestion
+  - why_not_bed
+  - call_jason_agent
+  - get_optimized_allocation
+  - confirm_optimized_allocation_exception
+  - get_optimized_allocation_moving
+  - get_suggestion
+  - default_thanks
+  - default_welcome
+  - get_suggestion_bed
+  - get_suggestion_with_bed_exception
+  - get_validation_result
+  - validation_result_confirm_valid
+  - validation_result_confirm_anyway
+  - verify_nurse_exception
+  - nurse_exception_get_suggestion
+  - verify_suitability
+  - get_exception_suggestion
+
+entities:
+  - patient
+  - bed
+  - numPatients
+
+responses:
+
+  utter_verify_suitability:
+  - text: "Primeiro eu preciso verificar se esse leito é adequado para esse paciente, ok?"
+  - text: "Antes eu preciso verificar se esse leito é adequado para esse paciente, pode ser?"
+
+  utter_verify_suitability_refused:
+  - text: "Desculpe, então não posso fazer a alocação."
+  - text: "Então não poderei fazer a alocação solicitada, me desculpe."
+
+  utter_unavailable_agent:
+  - text: "Desculpe-me, o agente parece não estar disponível no momento."
+
+  utter_thanks_response:
+  - text: "Disponha"
+  - text: "De nada, continuo à disposição"
+  - text: "Quando precisar de mim é só chamar"
+
+  utter_unavailable_bed_suggestions:
+  - text: "Desculpe, ainda não estou apto a fazer sugestões baseadas no leito, mas posso sugerir um leito para um paciente específico se você me disser qual paciente quer alocar"
+
+  #Temp actions
+
+  utter_verify_suitability_agreed:
+  - text: "action_verify_suitability_agreed"
+
+  utter_verify_another_suggestion:
+  - text: "action_verify_another_suggestion"
+
+  utter_verify_suitability_agreed_bed_suggestion:
+  - text: "action_verify_suitability_agreed_bed_suggestion"
+
+  utter_verify_suitability_refused_bed_suggestion:
+  - text: "action_verify_suitability_refused_bed_suggestion"
+
+  utter_verify_suitability_why:
+  - text: "action_verify_suitability_why"
+
+  utter_call_jason_agent:
+  - text: "action_call_jason_agent"
+
+  utter_optimize_allocation:
+  - text: "action_optimize_allocation"
+
+  utter_confirm_exception:
+  - text: "action_confirm_exception"
+
+  utter_get_exception_suggestion:
+  - text: "action_get_exception_suggestion"
+
+  utter_confirm_optimized_allocation:
+  - text: "action_confirm_optimized_allocation"
+
+  utter_refuse_optimized_allocation:
+  - text: "action_refuse_optimized_allocation"
+
+  utter_get_suggestion:
+  - text: "action_get_suggestion"
+
+  utter_confirm_suggestion_exception:
+  - text: "action_confirm_suggestion_exception"
+
+  utter_confirm_suggestion_allocation:
+  - text: "action_confirm_suggestion_allocation"
+
+  utter_refuse_suggestion_allocation:
+  - text: "action_refuse_suggestion_allocation"
+
+  utter_suggestion_bed_exception:
+  - text: "action_suggestion_bed_exception"
+
+  utter_confirm_exception_suggestion_bed_exception:
+  - text: "action_confirm_exception_suggestion_bed_exception"
+
+  utter_confirm_suggestion_bed_exception:
+  - text: "action_confirm_suggestion_bed_exception"
+
+  utter_refuse_suggestion_bed_exception:
+  - text: "action_refuse_suggestion_bed_exception"
+
+  utter_validation_result:
+  - text: "action_validation_result"
+
+  utter_confirm_exception_validation_result:
+  - text: "action_confirm_exception_validation_result"
+
+  utter_confirm_validation_result:
+  - text: "action_confirm_validation_result"
+
+  utter_refuse_validation_result:
+  - text: "action_refuse_validation_result"
+
+  utter_confirm_valid_validation_result:
+  - text: "action_confirm_valid_validation_result"
+
+  utter_optimize_validation_result:
+  - text: "action_optimize_validation_result"
+
+  utter_nurse_exception:
+  - text: "action_nurse_exception"
+
+  utter_suggestion_nurse_exception:
+  - text: "action_suggestion_nurse_exception"
+
+  utter_confirm_nurse_exception:
+  - text: "action_confirm_nurse_exception"
+
+  utter_refuse_nurse_exception:
+  - text: "action_refuse_nurse_exception"
+
+  utter_verify_suitability_t:
+  - text: "action_verify_suitability"
+
+  utter_suggestion_verify_suitability:
+  - text: "action_suggestion_verify_suitability"
+
+  utter_confirm_suggestion_verify_suitability:
+  - text: "action_confirm_suggestion_verify_suitability"
+
+  utter_refuse_suggestion_verify_suitability:
+  - text: "action_refuse_suggestion_verify_suitability"
+
+  utter_allocate_verify_suitability:
+  - text: "action_allocate_verify_suitability"
+
+  utter_why_verify_suitability:
+  - text: "action_why_verify_suitability"
+
+  utter_optimized_allocation_moving:
+  - text: "action_optimized_allocation_moving"
+
+  utter_exception_optimized_allocation_moving:
+  - text: "action_exception_optimized_allocation_moving"
+
+  utter_agree_optimized_allocation_moving:
+  - text: "action_agree_optimized_allocation_moving"
+
+  utter_refuse_optimized_allocation_moving:
+  - text: "action_refuse_optimized_allocation_moving"
+
+actions:
+ - action_verify_suitability_agreed
+ - action_verify_another_suggestion
+ - action_verify_suitability_agreed_bed_suggestion
+ - action_verify_suitability_refused_bed_suggestion
+ - action_verify_suitability_why
+ - action_call_jason_agent
+ - action_optimize_allocation
+ - action_confirm_exception
+ - action_get_exception_suggestion
+ - action_confirm_optimized_allocation
+ - action_refuse_optimized_allocation
+ - action_get_suggestion
+ - action_confirm_suggestion_exception
+ - action_confirm_suggestion_allocation
+ - action_refuse_suggestion_allocation
+ - action_suggestion_bed_exception
+ - action_confirm_exception_suggestion_bed_exception
+ - action_confirm_suggestion_bed_exception
+ - action_refuse_suggestion_bed_exception
+ - action_validation_result
+ - action_confirm_exception_validation_result
+ - action_confirm_validation_result
+ - action_refuse_validation_result
+ - action_confirm_valid_validation_result
+ - action_optimize_validation_result
+ - action_nurse_exception
+ - action_suggestion_nurse_exception
+ - action_confirm_nurse_exception
+ - action_refuse_nurse_exception
+ - action_verify_suitability
+ - action_suggestion_verify_suitability
+ - action_confirm_suggestion_verify_suitability
+ - action_refuse_suggestion_verify_suitability
+ - action_allocate_verify_suitability
+ - action_why_verify_suitability
+ - action_optimized_allocation_moving
+ - action_exception_optimized_allocation_moving
+ - action_agree_optimized_allocation_moving
+ - action_refuse_optimized_allocation_moving
+
+slots:
+  intentName:
+    type: text
+    mappings:
+      - type: from_intent
+        value: "Call Jason Agent"
+        intent: call_jason_agent
+
+      - type: from_intent
+        value: "Call Jason Agent" #"Default Welcome Intent"
+        intent: default_welcome
+
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Get Optimised Allocation Moving"
+        intent: get_optimized_allocation_moving
+
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Get Optimised Allocation Moving - no"
+        intent: 
+
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Get Optimised Allocation Moving - yes"
+        intent: 
+
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Get Optimised Allocation Moving - confirm with exception"
+        intent: 
+
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Get Optimised Allocation"
+        intent: get_optimized_allocation
+      
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Get Optimised Allocation - no"
+        intent: 
+      
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Get Optimised Allocation - yes"
+        intent: 
+
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Get Optimised Allocation - confirm with exception"
+        intent: 
+      
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Get Suggestion"
+        intent: get_suggestion
+      
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Get Suggestion - no"
+        intent: 
+      
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Get Suggestion - yes"
+        intent: 
+
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Verify Suitability"
+        intent: allocate_pacient
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Get Validation Result"
+        intent: get_validation_result
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Get Optimised Allocation"
+        intent: get_optimized_allocation
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Get Validation Result - optimize"
+        intent: get_optimized_allocation
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Get Validation Result - confirm"
+        intent: validation_result_confirm_anyway
+      - type: from_intent
+        value: "Call With Contexts and Parameters" #"Get Validation Result - no"
+        intent: refuse_bed_suggestion
+      
+
+  patient:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: patient
+  
+  bed:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: bed
+  
+  numPatients:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: numPatients
+
+config:
+  store_entities_as_slots: true
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

@@ -1,0 +1,13 @@
+version: "3.1"
+
+rules:
+
+- rule: default thanks
+  steps:
+    - intent: default_thanks
+    - action: utter_thanks_response
+
+- rule: default welcome
+  steps:
+    - intent: default_welcome
+    - action: action_call_jason_agent

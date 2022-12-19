@@ -1,0 +1,349 @@
+version: "3.1"
+
+stories:
+
+### COMMON PATHS ###
+
+- story: call jason agent
+  steps:
+    - intent: call_jason_agent
+    - action: action_call_jason_agent
+
+- story: default thanks
+  steps:
+    - intent: default_thanks
+    - action: utter_thanks_response
+
+#- story: default welcome
+#  steps:
+#    - intent: default_welcome
+#    - action: utter_unavailable_agent
+
+### ALLOCATE PATIENT ###
+
+- story: allocate patient and agree to verify bed
+  steps:
+    - intent: allocate_pacient
+    - action: utter_verify_suitability
+    - intent: agree
+    - action: action_verify_suitability_agreed
+#    - action: utter_verify_suitability_agreed
+    - checkpoint: agree_verify_bed
+
+- story: get suggestion - agree
+  steps:
+    - checkpoint: agree_verify_bed
+    - intent: another_bed_suggestion
+    - action: action_verify_another_suggestion
+    #- action: utter_verify_another_suggestion
+    - or:
+      - intent: agree
+      - intent: agree_bed_suggestion
+    - action: action_verify_suitability_agreed_bed_suggestion
+    #- action: utter_verify_suitability_agreed_bed_suggestion
+
+- story: get suggestion - refuse
+  steps:
+    - checkpoint: agree_verify_bed
+    - intent: another_bed_suggestion
+    - action: action_verify_another_suggestion
+    #- action: utter_verify_another_suggestion
+    - or:
+      - intent: refuse
+      - intent: refuse_bed_suggestion
+    - action: action_verify_suitability_refused_bed_suggestion
+    #- action: utter_verify_suitability_refused_bed_suggestion
+
+- story: allocate patient and agree to verify bed - why
+  steps:
+    - checkpoint: agree_verify_bed
+    - intent: why_not_bed
+    - action: action_verify_suitability_why
+    #- action: utter_verify_suitability_why
+
+- story: allocate patient and refuse to verify bed
+  steps:
+    - intent: allocate_pacient
+    - action: utter_verify_suitability
+    - intent: refuse
+    - action: utter_verify_suitability_refused
+
+### optimizED ALLOCATION ###
+
+- story: get optimized allocation
+  steps:
+    - intent: get_optimized_allocation
+    - action: action_optimize_allocation
+    #- action: utter_optimize_allocation
+    - checkpoint: agree_optimized_allocation
+
+- story: get optimized allocation - confirm with exception
+  steps:
+    - checkpoint: agree_optimized_allocation
+    - intent: confirm_optimized_allocation_exception
+    - action: action_confirm_exception
+    #- action: utter_confirm_exception
+    - checkpoint: confirm_exception
+
+- story: get optimized allocation - confirm with exception - exception suggetstion
+  steps:
+    - checkpoint: confirm_exception
+    - intent: get_exception_suggestion
+    - action: action_get_exception_suggestion
+    #- action: utter_get_exception_suggestion
+
+- story: get optimized allocation - confirm
+  steps:
+    - checkpoint: agree_optimized_allocation
+    - or:
+      - intent: agree
+      - intent: agree_bed_suggestion
+    - action: action_confirm_optimized_allocation
+    #- action: utter_confirm_optimized_allocation
+
+- story: get optimized allocation - refuse
+  steps:
+    - checkpoint: agree_optimized_allocation
+    - or:
+      - intent: refuse
+      - intent: refuse_bed_suggestion
+    - action: action_refuse_optimized_allocation
+    #- action: utter_refuse_optimized_allocation
+
+### OPTIMIZED ALLOCATION MOVING ###
+
+- story: get optimized allocation moving
+  steps:
+    - intent: get_optimized_allocation_moving
+    - action: action_optimized_allocation_moving
+    #- action: utter_optimized_allocation_moving
+    - checkpoint: confirm_optimized_allocation_moving
+
+- story: get optimized allocation moving - confirm exception
+  steps:
+    - checkpoint: confirm_optimized_allocation_moving
+    - intent: confirm_optimized_allocation_exception
+    - action: action_exception_optimized_allocation_moving
+    #- action: utter_exception_optimized_allocation_moving
+
+- story: get optimized allocation moving - confirm
+  steps:
+    - checkpoint: confirm_optimized_allocation_moving
+    - or:
+      - intent: agree
+      - intent: agree_bed_suggestion
+    - action: action_agree_optimized_allocation_moving
+    #- action: utter_agree_optimized_allocation_moving
+
+- story: get optimized allocation moving - refuse
+  steps:
+    - checkpoint: confirm_optimized_allocation_moving
+    - or:
+      - intent: refuse
+      - intent: refuse_bed_suggestion
+    - action: action_refuse_optimized_allocation_moving
+    #- action: utter_refuse_optimized_allocation_moving
+
+### SUGGESTION ###
+
+- story: get suggestion
+  steps:
+    - intent: get_suggestion
+    - action: action_get_suggestion
+    #- action: utter_get_suggestion
+    - checkpoint: confirm_suggestion
+
+- story: get suggestion - confirm exception
+  steps:
+    - checkpoint: confirm_suggestion
+    - intent: confirm_optimized_allocation_exception
+    - action: action_confirm_suggestion_exception
+    #- action: utter_confirm_suggestion_exception
+
+- story: get suggestion - confirm
+  steps:
+    - checkpoint: confirm_suggestion
+    - or:
+      - intent: agree
+      - intent: agree_bed_suggestion
+    - action: action_confirm_suggestion_allocation
+    #- action: utter_confirm_suggestion_allocation
+
+- story: get suggestion - refuse
+  steps:
+    - checkpoint: confirm_suggestion
+    - or:
+      - intent: refuse
+      - intent: refuse_bed_suggestion
+    - action: action_refuse_suggestion_allocation
+    #- action: utter_refuse_suggestion_allocation
+
+### GET SUGGESTION BY BED ###
+
+- story: get suggestion by bed
+  steps:
+    - intent: get_suggestion_bed
+    - action: utter_unavailable_bed_suggestions
+
+### GET SUGGESTION BED EXCEPTION ###
+
+- story: get suggestion bed exception
+  steps:
+    - intent: get_suggestion_with_bed_exception
+    - action: action_suggestion_bed_exception
+    #- action: utter_suggestion_bed_exception
+    - checkpoint: confirm_suggestion_bed_exception
+
+- story: get suggestion bed exception - confirm exception
+  steps:
+    - checkpoint: confirm_suggestion_bed_exception
+    - intent: confirm_optimized_allocation_exception
+    - action: action_confirm_exception_suggestion_bed_exception
+    #- action: utter_confirm_exception_suggestion_bed_exception
+
+- story: get suggestion bed exception- confirm
+  steps:
+    - checkpoint: confirm_suggestion_bed_exception
+    - or:
+      - intent: agree
+      - intent: agree_bed_suggestion
+    - action: action_confirm_suggestion_bed_exception
+    #- action: utter_confirm_suggestion_bed_exception
+
+- story: get suggestion bed exception - refuse
+  steps:
+    - checkpoint: confirm_suggestion_bed_exception
+    - or:
+      - intent: refuse
+      - intent: refuse_bed_suggestion
+    - action: action_refuse_suggestion_bed_exception
+    #- action: utter_refuse_suggestion_bed_exception
+
+### VALIDATION RESULT ###
+
+- story: validation result
+  steps:
+    - intent: get_validation_result
+    - action: action_validation_result
+#    #- action: utter_validation_result
+    - checkpoint: confirm_validation_result
+
+- story: validation result - confirm exception
+  steps:
+    - checkpoint: confirm_validation_result
+    - intent: confirm_optimized_allocation_exception
+    - action: action_confirm_exception_validation_result
+    #- action: utter_confirm_exception_validation_result
+
+- story: validation result - confirm
+  steps:
+    - checkpoint: confirm_validation_result
+    - or:
+      - intent: validation_result_confirm_anyway
+      - intent: agree_bed_suggestion
+    - action: action_confirm_validation_result
+    #- action: utter_confirm_validation_result
+
+- story: validation result - refuse
+  steps:
+    - checkpoint: confirm_validation_result
+    - or:
+      - intent: refuse
+      - intent: refuse_bed_suggestion
+    - action: action_refuse_validation_result
+    #- action: utter_refuse_validation_result
+
+- story: validation result - confirm valid
+  steps:
+    - checkpoint: confirm_validation_result
+    - intent: validation_result_confirm_valid
+    - action: action_confirm_valid_validation_result
+    #- action: utter_confirm_valid_validation_result
+
+- story: validation result - optimize
+  steps:
+    - checkpoint: confirm_validation_result
+    - intent: get_optimized_allocation
+    - action: action_optimize_validation_result
+    #- action: utter_optimize_validation_result
+
+### VERIFY NURSE EXCEPTION ###
+
+- story: verify nurse exception
+  steps:
+    - intent: verify_nurse_exception
+    - action: action_nurse_exception
+    #- action: utter_nurse_exception
+    - intent: nurse_exception_get_suggestion
+    - action: action_suggestion_nurse_exception
+    #- action: utter_suggestion_nurse_exception
+    - checkpoint: confirm_nurse_exception
+
+- story: verify nurse exception - confirm
+  steps:
+    - checkpoint: confirm_nurse_exception
+    - or:
+      - intent: agree
+      - intent: agree_bed_suggestion
+    - action: action_confirm_nurse_exception
+    #- action: utter_confirm_nurse_exception
+
+- story: verify nurse exception - refuse
+  steps:
+    - checkpoint: confirm_nurse_exception
+    - or:
+      - intent: refuse
+      - intent: refuse_bed_suggestion
+    - action: action_refuse_nurse_exception
+    #- action: utter_refuse_nurse_exception
+
+### VERIFY SUITABILITY ###
+
+- story: verify suitability
+  steps:
+    - intent: verify_suitability
+    - action: action_verify_suitability
+    #- action: utter_verify_suitability_t
+    - checkpoint: suggestion_verify_suitability
+
+- story: verify suitability - get suggestion
+  steps:
+    - checkpoint: suggestion_verify_suitability
+    - intent: another_bed_suggestion
+    - action: action_suggestion_verify_suitability
+    #- action: utter_suggestion_verify_suitability
+    - checkpoint: confirm_suggestion_verify_suitability
+
+- story: verify suitability - get suggestion - confirm
+  steps:
+    - checkpoint: confirm_suggestion_verify_suitability
+    - or:
+      - intent: agree
+      - intent: agree_bed_suggestion
+    - action: action_confirm_suggestion_verify_suitability
+    #- action: utter_confirm_suggestion_verify_suitability
+
+- story: verify suitability - get suggestion - refuse
+  steps:
+    - checkpoint: confirm_suggestion_verify_suitability
+    - or:
+      - intent: refuse
+      - intent: refuse_bed_suggestion
+    - action: action_refuse_suggestion_verify_suitability
+    #- action: utter_refuse_suggestion_verify_suitability
+
+- story: verify suitability - allocate
+  steps:
+    - checkpoint: suggestion_verify_suitability
+    - or:
+      - intent: validation_result_confirm_anyway
+      - intent: agree_bed_suggestion
+    - action: action_allocate_verify_suitability
+    #- action: utter_allocate_verify_suitability
+
+- story: verify suitability - why not
+  steps:
+    - checkpoint: suggestion_verify_suitability
+    - intent: why_not_bed
+    - action: action_why_verify_suitability
+    #- action: utter_why_verify_suitability

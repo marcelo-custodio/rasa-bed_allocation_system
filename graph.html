@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Rasa Core Visualisation</title>
+    <script src="https://dagrejs.github.io/project/dagre-d3/latest/dagre-d3.min.js"></script>
+    <script src="https://dagrejs.github.io/project/dagre/latest/dagre.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://dagrejs.github.io/project/graphlib-dot/v0.6.3/graphlib-dot.js"></script>
+</head>
+<body>
+<div id="errormsg" style="color: #b00"></div>
+<svg>
+    <style id="graph-style">
+        .node.invisible > rect {
+            display: none;
+        }
+
+        .node.start > rect {
+            fill: #7f7;
+            rx: 30;
+            ry: 18;
+        }
+
+        .node.end > rect {
+            fill: #f77;
+            rx: 30;
+            ry: 18;
+        }
+
+        .node:not(.active) > rect, .node:not(.active) > .label {
+            opacity: 0.4;
+        }
+
+        .edgePath:not(.active) path {
+            opacity: 0.4;
+        }
+
+        .node.ellipsis > rect {
+            fill: #CCC;
+        }
+
+        .node.intent > rect {
+            fill: #7ff;
+        }
+
+        .node.dashed > rect {
+            stroke-dasharray: 5;
+        }
+
+        text {
+            font-weight: 300;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serf, serif;
+            font-size: 14px;
+            color: #1f1d1d;
+        }
+
+        .node rect {
+            stroke: #444;
+            fill: #fff;
+            stroke-width: 1.5px;
+        }
+
+        .edgePath path {
+            stroke: #333;
+            stroke-width: 1.5px;
+        }
+
+        svg {
+            position: fixed;
+            top: 10px;
+            left: 0;
+            height: 100%;
+            width: 100%
+        }
+    </style>
+    <g></g>
+</svg>
+<script>
+
+  function serveGraph() {
+    let oldInputGraphValue;
+
+    const url = 'visualization.dot';
+    const refreshInterval = 500;
+
+    // trigger a refresh by fetching an updated graph
+    setInterval(function () {
+      fetch(url).then(r => r.text()).then(dot => {
+        document.getElementById('errormsg').innerHTML = '';
+        if (oldInputGraphValue === dot) return;
+
+        oldInputGraphValue = dot;
+        drawGraph(dot);
+      }).catch(err => {
+        document.getElementById('errormsg').innerHTML =
+          'Failed to update plot. (' + err.message + ')';
+      });
+    }, refreshInterval);
+  }
+
+  function drawGraph(graph) {
+    let g = graphlibDot.read(graph);
+    // Set margins, if not present
+    if (!g.graph().hasOwnProperty("marginx") &&
+      !g.graph().hasOwnProperty("marginy")) {
+      g.graph().marginx = 20;
+      g.graph().marginy = 20;
+    }
+    g.graph().transition = function (selection) {
+      return selection.transition().duration(300);
+    };
+    // Render the graph into svg g
+    d3.select("svg g").call(render, g);
+  }
+  // Set up zoom support
+  const svg = d3.select("svg"),
+    inner = d3.select("svg g"),
+    zoom = d3.zoom().on("zoom", function () {
+      inner.attr("transform", d3.event.transform);
+    });
+  svg.call(zoom);
+
+  // Create and configure the renderer
+  const render = dagreD3.render();
+
+  let isClient = false;
+  isClient = true;
+
+  if (isClient) {
+    // Mark all nodes and their edges as active
+    cssRules = document.getElementById('graph-style').sheet.cssRules;
+    cssRules[3].style.opacity = 1;
+    cssRules[4].style.opacity = 1;
+
+    let graph;
+    graph = `digraph  {
+0 [class="start active", fillcolor=green, fontsize=12, label=START, style=filled];
+"-1" [class=end, fillcolor=red, fontsize=12, label=END, style=filled];
+1 [class="", fontsize=12, label=utter_verify_suitability];
+2 [class="", fontsize=12, label=utter_verify_suitability_refused];
+3 [class="", fontsize=12, label=utter_optimize_allocation];
+4 [class="", fontsize=12, label=utter_confirm_exception];
+5 [class="", fontsize=12, label=utter_get_exception_suggestion];
+7 [class="", fontsize=12, label=utter_confirm_optimized_allocation];
+11 [class="", fontsize=12, label=utter_refuse_optimized_allocation];
+14 [class="", fontsize=12, label=utter_optimized_allocation_moving];
+15 [class="", fontsize=12, label=utter_exception_optimized_allocation_moving];
+17 [class="", fontsize=12, label=utter_agree_optimized_allocation_moving];
+21 [class="", fontsize=12, label=utter_refuse_optimized_allocation_moving];
+24 [class="", fontsize=12, label=utter_get_suggestion];
+25 [class="", fontsize=12, label=utter_confirm_suggestion_exception];
+26 [class="", fontsize=12, label=utter_unavailable_agent];
+27 [class="", fontsize=12, label=utter_call_jason_agent];
+29 [class="", fontsize=12, label=utter_confirm_suggestion_allocation];
+33 [class="", fontsize=12, label=utter_refuse_suggestion_allocation];
+36 [class="", fontsize=12, label=utter_unavailable_bed_suggestions];
+37 [class="", fontsize=12, label=utter_thanks_response];
+38 [class="", fontsize=12, label=utter_suggestion_bed_exception];
+39 [class="", fontsize=12, label=utter_confirm_exception_suggestion_bed_exception];
+41 [class="", fontsize=12, label=utter_confirm_suggestion_bed_exception];
+45 [class="", fontsize=12, label=utter_refuse_suggestion_bed_exception];
+48 [class="", fontsize=12, label=utter_unavailable_agent];
+49 [class="", fontsize=12, label=utter_validation_result];
+50 [class="", fontsize=12, label=utter_confirm_exception_validation_result];
+52 [class="", fontsize=12, label=utter_confirm_validation_result];
+56 [class="", fontsize=12, label=utter_refuse_validation_result];
+60 [class="", fontsize=12, label=utter_confirm_valid_validation_result];
+62 [class="", fontsize=12, label=utter_verify_suitability_agreed];
+63 [class="", fontsize=12, label=utter_verify_suitability_why];
+66 [class="", fontsize=12, label=utter_verify_another_suggestion];
+67 [class="", fontsize=12, label=utter_verify_suitability_refused_bed_suggestion];
+73 [class="", fontsize=12, label=utter_optimize_validation_result];
+74 [class="", fontsize=12, label=utter_nurse_exception];
+75 [class="", fontsize=12, label=utter_suggestion_nurse_exception];
+76 [class="", fontsize=12, label=utter_confirm_nurse_exception];
+82 [class="", fontsize=12, label=utter_refuse_nurse_exception];
+86 [class="", fontsize=12, label=utter_verify_suitability_t];
+87 [class="", fontsize=12, label=utter_suggestion_verify_suitability];
+88 [class="", fontsize=12, label=utter_confirm_suggestion_verify_suitability];
+94 [class="", fontsize=12, label=utter_refuse_suggestion_verify_suitability];
+99 [class="", fontsize=12, label=utter_allocate_verify_suitability];
+103 [class="", fontsize=12, label=utter_why_verify_suitability];
+107 [class="", fontsize=12, label=utter_verify_suitability_agreed_bed_suggestion];
+112 [class="", fontsize=12, label="..."];
+116 [class=intent, fillcolor=lightblue, label="coloque a Manoela Freitas no leito 678y", shape=rect, style=filled];
+117 [class=intent, fillcolor=lightblue, label="Crie uma alocação otimizada usando os dados atuais", shape=rect, style=filled];
+118 [class=intent, fillcolor=lightblue, label="movendo no máximo um paciente de lugar, que alocação você me sugere?", shape=rect, style=filled];
+119 [class=intent, fillcolor=lightblue, label="olá, onde posso alocar o João Machado", shape=rect, style=filled];
+120 [class=intent, fillcolor=lightblue, label="Diga olá ao agente Jason", shape=rect, style=filled];
+121 [class=intent, fillcolor=lightblue, label="E no leito 203j que paciente você acha de deve ser colocado?", shape=rect, style=filled];
+122 [class=intent, fillcolor=lightblue, label="Ok, Obrigado!", shape=rect, style=filled];
+123 [class=intent, fillcolor=lightblue, label="fora o 202k tem mais algum leito adequado pra Ana de Mello?", shape=rect, style=filled];
+124 [class=intent, fillcolor=lightblue, label=fala, shape=rect, style=filled];
+125 [class=intent, fillcolor=lightblue, label="valide a minha alocação", shape=rect, style=filled];
+126 [class=intent, fillcolor=lightblue, label="o paciente Alessandro Jones tem alguma excessão cadastrada?", shape=rect, style=filled];
+127 [class=intent, fillcolor=lightblue, label="o [leito 103d] é adequado para o [paciente Mariano Ferreira]?", shape=rect, style=filled];
+128 [class=intent, fillcolor=lightblue, label=discordo, shape=rect, style=filled];
+129 [class=intent, fillcolor=lightblue, label=sim, shape=rect, style=filled];
+130 [class=intent, fillcolor=lightblue, label="Certo, pode alocar os pacientes conforme sua sugestão, exceto o paciente Marcos Souza e a paciente Ana Silva", shape=rect, style=filled];
+131 [class=intent, fillcolor=lightblue, label="isso mesmo", shape=rect, style=filled];
+132 [class=intent, fillcolor=lightblue, label="Ok, aloque os pacientes conforme você sugeriu", shape=rect, style=filled];
+133 [class=intent, fillcolor=lightblue, label="não obrigado", shape=rect, style=filled];
+134 [class=intent, fillcolor=lightblue, label="não, quero que aloque direto", shape=rect, style=filled];
+135 [class=intent, fillcolor=lightblue, label="E pra essa paciente? que leitos você sugere?", shape=rect, style=filled];
+136 [class=intent, fillcolor=lightblue, label="Certo, pode alocar os pacientes conforme sua sugestão, exceto o paciente Marcos Souza", shape=rect, style=filled];
+137 [class=intent, fillcolor=lightblue, label=ok, shape=rect, style=filled];
+138 [class=intent, fillcolor=lightblue, label="Pode confirmar", shape=rect, style=filled];
+139 [class=intent, fillcolor=lightblue, label="não", shape=rect, style=filled];
+140 [class=intent, fillcolor=lightblue, label="Não confirme", shape=rect, style=filled];
+141 [class=intent, fillcolor=lightblue, label="Certo, pode alocar os pacientes conforme sua sugestão, exceto o paciente Lucas Maria Figueira.", shape=rect, style=filled];
+142 [class=intent, fillcolor=lightblue, label=concordo, shape=rect, style=filled];
+143 [class=intent, fillcolor=lightblue, label="Está bem, pode alocar", shape=rect, style=filled];
+144 [class=intent, fillcolor=lightblue, label="Não aloque", shape=rect, style=filled];
+145 [class=intent, fillcolor=lightblue, label="Agora não", shape=rect, style=filled];
+146 [class=intent, fillcolor=lightblue, label="Ok pode alocar, mas não aloque o Marcos Souza nem a Ana Silva", shape=rect, style=filled];
+147 [class=intent, fillcolor=lightblue, label=pode, shape=rect, style=filled];
+148 [class=intent, fillcolor=lightblue, label="Ok, aloque os pacientes conforme você sugeriu", shape=rect, style=filled];
+149 [class=intent, fillcolor=lightblue, label="definitivamente não", shape=rect, style=filled];
+150 [class=intent, fillcolor=lightblue, label="Agora não", shape=rect, style=filled];
+151 [class=intent, fillcolor=lightblue, label="Tá, aloque todos exceto a Maria Lucas", shape=rect, style=filled];
+152 [class=intent, fillcolor=lightblue, label="alocar assim mesmo", shape=rect, style=filled];
+153 [class=intent, fillcolor=lightblue, label="Ok, aloque os pacientes conforme você sugeriu", shape=rect, style=filled];
+154 [class=intent, fillcolor=lightblue, label="não tenho interesse", shape=rect, style=filled];
+155 [class=intent, fillcolor=lightblue, label="Agora não", shape=rect, style=filled];
+156 [class=intent, fillcolor=lightblue, label="não os que tem falhas, os outros sim", shape=rect, style=filled];
+157 [class=intent, fillcolor=lightblue, label="Crie uma alocação otimizada", shape=rect, style=filled];
+158 [class=intent, fillcolor=lightblue, label="por quê?", shape=rect, style=filled];
+159 [class=intent, fillcolor=lightblue, label="então o que você me sugere?", shape=rect, style=filled];
+160 [class=intent, fillcolor=lightblue, label="Agora não", shape=rect, style=filled];
+161 [class=intent, fillcolor=lightblue, label="agora não", shape=rect, style=filled];
+162 [class=intent, fillcolor=lightblue, label=ok, shape=rect, style=filled];
+163 [class=intent, fillcolor=lightblue, label="Ok, aloque os pacientes conforme você sugeriu", shape=rect, style=filled];
+164 [class=intent, fillcolor=lightblue, label="tem algum leito adequado agora?", shape=rect, style=filled];
+165 [class=intent, fillcolor=lightblue, label="Pode ser", shape=rect, style=filled];
+166 [class=intent, fillcolor=lightblue, label="Pode confirmar", shape=rect, style=filled];
+167 [class=intent, fillcolor=lightblue, label="definitivamente não", shape=rect, style=filled];
+168 [class=intent, fillcolor=lightblue, label="Cancelar reservas", shape=rect, style=filled];
+169 [class=intent, fillcolor=lightblue, label="algum outro leito é adequado?", shape=rect, style=filled];
+170 [class=intent, fillcolor=lightblue, label="alocar mesmo assim", shape=rect, style=filled];
+171 [class=intent, fillcolor=lightblue, label="Ok, pode alocar conforme sua sugestão", shape=rect, style=filled];
+172 [class=intent, fillcolor=lightblue, label="por quê?", shape=rect, style=filled];
+173 [class=intent, fillcolor=lightblue, label=ok, shape=rect, style=filled];
+174 [class=intent, fillcolor=lightblue, label="Sim, pode alocar", shape=rect, style=filled];
+175 [class=intent, fillcolor=lightblue, label="não quero isso", shape=rect, style=filled];
+176 [class=intent, fillcolor=lightblue, label="Cancelar reservas", shape=rect, style=filled];
+177 [class=intent, fillcolor=lightblue, label=Obrigado, shape=rect, style=filled];
+178 [class=intent, fillcolor=lightblue, label=eae, shape=rect, style=filled];
+0 -> 112  [class="", key=NONE, label=""];
+0 -> 116  [class="", key=0];
+0 -> 117  [class="", key=0];
+0 -> 118  [class="", key=0];
+0 -> 119  [class="", key=0];
+0 -> 120  [class="", key=0];
+0 -> 121  [class="", key=0];
+0 -> 122  [class="", key=0];
+0 -> 123  [class="", key=0];
+0 -> 124  [class="", key=0];
+0 -> 125  [class="", key=0];
+0 -> 126  [class="", key=0];
+0 -> 127  [class="", key=0];
+1 -> 128  [class="", key=0];
+1 -> 129  [class="", key=0];
+2 -> "-1"  [class="", key=NONE, label=""];
+3 -> 130  [class="", key=0];
+3 -> 131  [class="", key=0];
+3 -> 132  [class="", key=0];
+3 -> 133  [class="", key=0];
+3 -> 134  [class="", key=0];
+4 -> 135  [class="", key=0];
+5 -> "-1"  [class="", key=NONE, label=""];
+7 -> "-1"  [class="", key=NONE, label=""];
+11 -> "-1"  [class="", key=NONE, label=""];
+14 -> 136  [class="", key=0];
+14 -> 137  [class="", key=0];
+14 -> 138  [class="", key=0];
+14 -> 139  [class="", key=0];
+14 -> 140  [class="", key=0];
+15 -> "-1"  [class="", key=NONE, label=""];
+17 -> "-1"  [class="", key=NONE, label=""];
+21 -> "-1"  [class="", key=NONE, label=""];
+24 -> 141  [class="", key=0];
+24 -> 142  [class="", key=0];
+24 -> 143  [class="", key=0];
+24 -> 144  [class="", key=0];
+24 -> 145  [class="", key=0];
+25 -> "-1"  [class="", key=NONE, label=""];
+26 -> 27  [class="", key=NONE, label=""];
+27 -> "-1"  [class="", key=NONE, label=""];
+29 -> "-1"  [class="", key=NONE, label=""];
+33 -> "-1"  [class="", key=NONE, label=""];
+36 -> "-1"  [class="", key=NONE, label=""];
+37 -> "-1"  [class="", key=NONE, label=""];
+38 -> 146  [class="", key=0];
+38 -> 147  [class="", key=0];
+38 -> 148  [class="", key=0];
+38 -> 149  [class="", key=0];
+38 -> 150  [class="", key=0];
+39 -> "-1"  [class="", key=NONE, label=""];
+41 -> "-1"  [class="", key=NONE, label=""];
+45 -> "-1"  [class="", key=NONE, label=""];
+48 -> "-1"  [class="", key=NONE, label=""];
+49 -> 151  [class="", key=0];
+49 -> 152  [class="", key=0];
+49 -> 153  [class="", key=0];
+49 -> 154  [class="", key=0];
+49 -> 155  [class="", key=0];
+49 -> 156  [class="", key=0];
+49 -> 157  [class="", key=0];
+50 -> "-1"  [class="", key=NONE, label=""];
+52 -> "-1"  [class="", key=NONE, label=""];
+56 -> "-1"  [class="", key=NONE, label=""];
+60 -> "-1"  [class="", key=NONE, label=""];
+62 -> 158  [class="", key=0];
+62 -> 159  [class="", key=0];
+63 -> "-1"  [class="", key=NONE, label=""];
+66 -> 160  [class="", key=0];
+66 -> 161  [class="", key=0];
+66 -> 162  [class="", key=0];
+66 -> 163  [class="", key=0];
+67 -> "-1"  [class="", key=NONE, label=""];
+73 -> "-1"  [class="", key=NONE, label=""];
+74 -> 164  [class="", key=0];
+75 -> 165  [class="", key=0];
+75 -> 166  [class="", key=0];
+75 -> 167  [class="", key=0];
+75 -> 168  [class="", key=0];
+76 -> "-1"  [class="", key=NONE, label=""];
+82 -> "-1"  [class="", key=NONE, label=""];
+86 -> 169  [class="", key=0];
+86 -> 170  [class="", key=0];
+86 -> 171  [class="", key=0];
+86 -> 172  [class="", key=0];
+87 -> 173  [class="", key=0];
+87 -> 174  [class="", key=0];
+87 -> 175  [class="", key=0];
+87 -> 176  [class="", key=0];
+88 -> "-1"  [class="", key=NONE, label=""];
+94 -> "-1"  [class="", key=NONE, label=""];
+99 -> "-1"  [class="", key=NONE, label=""];
+103 -> "-1"  [class="", key=NONE, label=""];
+107 -> "-1"  [class="", key=NONE, label=""];
+112 -> 177  [class="", key=0];
+112 -> 178  [class="", key=0];
+116 -> 1  [class="", key=0];
+117 -> 3  [class="", key=0];
+118 -> 14  [class="", key=0];
+119 -> 24  [class="", key=0];
+120 -> 26  [class="", key=0];
+121 -> 36  [class="", key=0];
+122 -> 37  [class="", key=0];
+123 -> 38  [class="", key=0];
+124 -> 48  [class="", key=0];
+125 -> 49  [class="", key=0];
+126 -> 74  [class="", key=0];
+127 -> 86  [class="", key=0];
+128 -> 2  [class="", key=0];
+129 -> 62  [class="", key=0];
+130 -> 4  [class="", key=0];
+131 -> 7  [class="", key=0];
+132 -> 7  [class="", key=0];
+133 -> 11  [class="", key=0];
+134 -> 11  [class="", key=0];
+135 -> 5  [class="", key=0];
+136 -> 15  [class="", key=0];
+137 -> 17  [class="", key=0];
+138 -> 17  [class="", key=0];
+139 -> 21  [class="", key=0];
+140 -> 21  [class="", key=0];
+141 -> 25  [class="", key=0];
+142 -> 29  [class="", key=0];
+143 -> 29  [class="", key=0];
+144 -> 33  [class="", key=0];
+145 -> 33  [class="", key=0];
+146 -> 39  [class="", key=0];
+147 -> 41  [class="", key=0];
+148 -> 41  [class="", key=0];
+149 -> 45  [class="", key=0];
+150 -> 45  [class="", key=0];
+151 -> 50  [class="", key=0];
+152 -> 52  [class="", key=0];
+153 -> 52  [class="", key=0];
+154 -> 56  [class="", key=0];
+155 -> 56  [class="", key=0];
+156 -> 60  [class="", key=0];
+157 -> 73  [class="", key=0];
+158 -> 63  [class="", key=0];
+159 -> 66  [class="", key=0];
+160 -> 67  [class="", key=0];
+161 -> 67  [class="", key=0];
+162 -> 107  [class="", key=0];
+163 -> 107  [class="", key=0];
+164 -> 75  [class="", key=0];
+165 -> 76  [class="", key=0];
+166 -> 76  [class="", key=0];
+167 -> 82  [class="", key=0];
+168 -> 82  [class="", key=0];
+169 -> 87  [class="", key=0];
+170 -> 99  [class="", key=0];
+171 -> 99  [class="", key=0];
+172 -> 103  [class="", key=0];
+173 -> 88  [class="", key=0];
+174 -> 88  [class="", key=0];
+175 -> 94  [class="", key=0];
+176 -> 94  [class="", key=0];
+177 -> 37  [class="", key=0];
+178 -> 48  [class="", key=0];
+}
+`;
+    drawGraph(graph);
+  } else {
+    serveGraph();
+  }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,378 @@
+[
+  {
+    "text": "alocar joao machado em 101a",
+    "intent": "allocate_pacient",
+    "intent_prediction": {
+      "name": "get_suggestion",
+      "confidence": 0.8673052191734314
+    }
+  },
+  {
+    "text": "Posso colocar a Maria da Silva no leito 203b?",
+    "intent": "allocate_pacient",
+    "intent_prediction": {
+      "name": "get_suggestion",
+      "confidence": 0.37641242146492004
+    }
+  },
+  {
+    "text": "Tudo bem",
+    "intent": "agree",
+    "intent_prediction": {
+      "name": "refuse",
+      "confidence": 0.28785598278045654
+    }
+  },
+  {
+    "text": "isso mesmo",
+    "intent": "agree",
+    "intent_prediction": {
+      "name": "refuse",
+      "confidence": 0.8004457354545593
+    }
+  },
+  {
+    "text": "qual leito você sugere para ela?",
+    "intent": "another_bed_suggestion",
+    "intent_prediction": {
+      "name": "nurse_exception_get_suggestion",
+      "confidence": 0.7233090996742249
+    }
+  },
+  {
+    "text": "Valeu",
+    "intent": "default_thanks",
+    "intent_prediction": {
+      "name": "agree",
+      "confidence": 0.4667763113975525
+    }
+  },
+  {
+    "text": "alocar quem no 204l?",
+    "intent": "get_suggestion_bed",
+    "intent_prediction": {
+      "name": "why_not_bed",
+      "confidence": 0.6577710509300232
+    }
+  },
+  {
+    "text": "exceto o 209f em qual leito vc acha que devemos colocar o Marcos Pasqual?",
+    "intent": "get_suggestion_with_bed_exception",
+    "intent_prediction": {
+      "name": "get_suggestion_bed",
+      "confidence": 0.4470753073692322
+    }
+  },
+  {
+    "text": "ok",
+    "intent": "agree",
+    "intent_prediction": {
+      "name": "default_thanks",
+      "confidence": 0.20873916149139404
+    }
+  },
+  {
+    "text": "sim",
+    "intent": "agree",
+    "intent_prediction": {
+      "name": "refuse",
+      "confidence": 0.1842932105064392
+    }
+  },
+  {
+    "text": "Ok, pode alocar conforme sua sugestão",
+    "intent": "agree_bed_suggestion",
+    "intent_prediction": {
+      "name": "confirm_optimized_allocation_exception",
+      "confidence": 0.5233445167541504
+    }
+  },
+  {
+    "text": "então o que você me sugere?",
+    "intent": "another_bed_suggestion",
+    "intent_prediction": {
+      "name": "get_optimized_allocation",
+      "confidence": 0.964669942855835
+    }
+  },
+  {
+    "text": "Como devo alocar então?",
+    "intent": "get_optimized_allocation",
+    "intent_prediction": {
+      "name": "another_bed_suggestion",
+      "confidence": 0.31909024715423584
+    }
+  },
+  {
+    "text": "Pode confirmar mas deixe de fora a Janaina de Vargas",
+    "intent": "confirm_optimized_allocation_exception",
+    "intent_prediction": {
+      "name": "get_suggestion",
+      "confidence": 0.8032516241073608
+    }
+  },
+  {
+    "text": "Aloque o paciente Julio de Castilhos",
+    "intent": "get_suggestion",
+    "intent_prediction": {
+      "name": "confirm_optimized_allocation_exception",
+      "confidence": 0.588854968547821
+    }
+  },
+  {
+    "text": "opa",
+    "intent": "default_welcome",
+    "intent_prediction": {
+      "name": "default_thanks",
+      "confidence": 0.347124844789505
+    }
+  },
+  {
+    "text": "pode alocar",
+    "intent": "validation_result_confirm_anyway",
+    "intent_prediction": {
+      "name": "agree_bed_suggestion",
+      "confidence": 0.5878582000732422
+    }
+  },
+  {
+    "text": "Qual leito você me sugere para essa paciente?",
+    "intent": "get_exception_suggestion",
+    "intent_prediction": {
+      "name": "nurse_exception_get_suggestion",
+      "confidence": 0.719322681427002
+    }
+  },
+  {
+    "text": "aloque o leito 345o para a Maria das Graças",
+    "intent": "allocate_pacient",
+    "intent_prediction": {
+      "name": "confirm_optimized_allocation_exception",
+      "confidence": 0.38693296909332275
+    }
+  },
+  {
+    "text": "confirmar",
+    "intent": "agree",
+    "intent_prediction": {
+      "name": "get_validation_result",
+      "confidence": 0.865385115146637
+    }
+  },
+  {
+    "text": "Então sugira um que seja adequado",
+    "intent": "another_bed_suggestion",
+    "intent_prediction": {
+      "name": "get_optimized_allocation",
+      "confidence": 0.4077112674713135
+    }
+  },
+  {
+    "text": "tem alguma sugestão?",
+    "intent": "get_optimized_allocation",
+    "intent_prediction": {
+      "name": "another_bed_suggestion",
+      "confidence": 0.483036607503891
+    }
+  },
+  {
+    "text": "em que quarto devo colocar o Daniel Souza?",
+    "intent": "get_suggestion",
+    "intent_prediction": {
+      "name": "allocate_pacient",
+      "confidence": 0.419128954410553
+    }
+  },
+  {
+    "text": "Qual leito você me sugere para o paciente Marcos Souza, exceto o 102b?",
+    "intent": "get_suggestion_with_bed_exception",
+    "intent_prediction": {
+      "name": "get_suggestion",
+      "confidence": 0.4092562794685364
+    }
+  },
+  {
+    "text": "Confirme a alocação",
+    "intent": "validation_result_confirm_anyway",
+    "intent_prediction": {
+      "name": "get_validation_result",
+      "confidence": 0.9114373922348022
+    }
+  },
+  {
+    "text": "Confirme",
+    "intent": "validation_result_confirm_anyway",
+    "intent_prediction": {
+      "name": "get_validation_result",
+      "confidence": 0.9262706637382507
+    }
+  },
+  {
+    "text": "Confirme a alocação do paciente Antonio dos Santos no leito 215d",
+    "intent": "allocate_pacient",
+    "intent_prediction": {
+      "name": "confirm_optimized_allocation_exception",
+      "confidence": 0.4792674779891968
+    }
+  },
+  {
+    "text": "Pode ser",
+    "intent": "agree",
+    "intent_prediction": {
+      "name": "agree_bed_suggestion",
+      "confidence": 0.35034361481666565
+    }
+  },
+  {
+    "text": "concordo",
+    "intent": "agree",
+    "intent_prediction": {
+      "name": "refuse",
+      "confidence": 0.6537758111953735
+    }
+  },
+  {
+    "text": "Ok, aloque os pacientes conforme você sugeriu",
+    "intent": "agree_bed_suggestion",
+    "intent_prediction": {
+      "name": "validation_result_confirm_valid",
+      "confidence": 0.37566161155700684
+    }
+  },
+  {
+    "text": "o que você pode me sugerir?",
+    "intent": "get_optimized_allocation",
+    "intent_prediction": {
+      "name": "another_bed_suggestion",
+      "confidence": 0.543168306350708
+    }
+  },
+  {
+    "text": "saudações",
+    "intent": "default_welcome",
+    "intent_prediction": {
+      "name": "verify_nurse_exception",
+      "confidence": 0.594714343547821
+    }
+  },
+  {
+    "text": "faça uma sugestão de alocação para a Ana Mendes, fora o 101a",
+    "intent": "get_suggestion_with_bed_exception",
+    "intent_prediction": {
+      "name": "get_optimized_allocation",
+      "confidence": 0.26613402366638184
+    }
+  },
+  {
+    "text": "confirme alocação",
+    "intent": "get_validation_result",
+    "intent_prediction": {
+      "name": "validation_result_confirm_anyway",
+      "confidence": 0.9668264985084534
+    }
+  },
+  {
+    "text": "confirme reserva",
+    "intent": "get_validation_result",
+    "intent_prediction": {
+      "name": "validation_result_confirm_anyway",
+      "confidence": 0.8132827281951904
+    }
+  },
+  {
+    "text": "Faça uma alocação otimizada pra esse paciente considerando essa excessão",
+    "intent": "nurse_exception_get_suggestion",
+    "intent_prediction": {
+      "name": "get_exception_suggestion",
+      "confidence": 0.26303789019584656
+    }
+  },
+  {
+    "text": "pode",
+    "intent": "agree",
+    "intent_prediction": {
+      "name": "validation_result_confirm_anyway",
+      "confidence": 0.5762333869934082
+    }
+  },
+  {
+    "text": "parece bom",
+    "intent": "agree",
+    "intent_prediction": {
+      "name": "default_thanks",
+      "confidence": 0.5911133885383606
+    }
+  },
+  {
+    "text": "discordo",
+    "intent": "refuse",
+    "intent_prediction": {
+      "name": "agree",
+      "confidence": 0.8799116611480713
+    }
+  },
+  {
+    "text": "Pode confirmar",
+    "intent": "agree_bed_suggestion",
+    "intent_prediction": {
+      "name": "validation_result_confirm_anyway",
+      "confidence": 0.7401822209358215
+    }
+  },
+  {
+    "text": "Você pode me sugerir outro leito além do 202b?",
+    "intent": "another_bed_suggestion",
+    "intent_prediction": {
+      "name": "get_suggestion_with_bed_exception",
+      "confidence": 0.29508984088897705
+    }
+  },
+  {
+    "text": "o que você me sugere?",
+    "intent": "get_optimized_allocation",
+    "intent_prediction": {
+      "name": "another_bed_suggestion",
+      "confidence": 0.501232385635376
+    }
+  },
+  {
+    "text": "Aloque todos menos a Ana Maria e a Joana da Silva",
+    "intent": "confirm_optimized_allocation_exception",
+    "intent_prediction": {
+      "name": "get_suggestion",
+      "confidence": 0.6249144077301025
+    }
+  },
+  {
+    "text": "há quanto tempo",
+    "intent": "default_welcome",
+    "intent_prediction": {
+      "name": "agree_bed_suggestion",
+      "confidence": 0.14455020427703857
+    }
+  },
+  {
+    "text": "qual leito você sugere pro paciente Cristiano da Silva, desde que não seja o 304l",
+    "intent": "get_suggestion_with_bed_exception",
+    "intent_prediction": {
+      "name": "get_suggestion",
+      "confidence": 0.948401689529419
+    }
+  },
+  {
+    "text": "A alocação que fiz é válida?",
+    "intent": "get_validation_result",
+    "intent_prediction": {
+      "name": "another_bed_suggestion",
+      "confidence": 0.37945207953453064
+    }
+  },
+  {
+    "text": "confirmo alocação",
+    "intent": "validation_result_confirm_anyway",
+    "intent_prediction": {
+      "name": "get_validation_result",
+      "confidence": 0.9196172952651978
+    }
+  }
+]
